@@ -30,7 +30,7 @@ Harjoituksen tein läppärillä, jossa on AMD Ryzen 5 4500U -suoritin ja 32 Gt R
 
 ## a) Paikallinen: Debian 13 virtuaalikoneeseen
 
-Isoin osa tästä meni ihan rutiinilla, mutta yksi pieni kommellus matkan varrella opetti enemmän kuin itse onnistunut asennus. Käyn läpi koko kulkua.
+Isoin osa tästä meni ihan rutiinilla, mutta yksi pieni kommellus matkan varrella opetti enemmän kuin itse onnistunut asennus. Käyn läpi koko asennuksen.
 
 ### Kone pystyyn Hyper-V:llä
 
