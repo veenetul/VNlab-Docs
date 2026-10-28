@@ -60,7 +60,7 @@ Ensimmäiselle käyttäjälle annoin nimen `ladmin`. Kyllä, se on vähän laisk
 
 Levyä (Hyper-V:n 136 GB virtuaalilevy) en päättänyt pilkkoa mitenkään fiksusti, vaan valitsin ohjatun asennuksen koko levyn käyttöön:
 
-![Ohjattu partitiointi, koko levy](img/step6.png)
+![Ohjattu partitiointi, koko levy](img/step6_.png)
 
 Ja osiointikin meni kaikkein yksinkertaisimmallaan eli kaikki yhteen osioon. Harjoituskoneelle riittää. Jos joskus tarvitsisi erillistä /homea tai palvelinrooleja, voisi harkita tarkemmin, mutta nyt tämä oli selkein ja nopein reitti:
 
