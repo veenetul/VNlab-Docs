@@ -52,7 +52,7 @@ Seuraavaksi root-salasana. Jätin sen tarkoituksella tyhjäksi, koska tuore Debi
 
 ![Root-salasana jätetään tyhjäksi, root-tili lukitaan](img/step4_.png)
 
-Ensimmäiselle käyttäjälle annoin nimen `ladmin`. Kyllä, se on vähän laiskasti keksitty, mutta toimiva, ja oikeastaihan sähköpostin nimen origon tarkoitus on olla "oikea" nimi:
+Ensimmäiselle käyttäjälle annoin nimen `ladmin`. Kyllä, se on vähän laiskasti keksitty, mutta toimiva nimi:
 
 ![Käyttäjänimen syöttö](img/step5_.png)
 
