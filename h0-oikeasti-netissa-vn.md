@@ -175,8 +175,3 @@ Nimenä oli .space-päätteinen harjoitusdomain (halvin kategoria, mielellään 
 
 *Raportti julkaistaan GitHub Pagesilla (Karvinen 2023 -ohjeen mukaan):*
 
-1. Tee repositorio, esim. `ville-linuxpalvelimet`
-2. Lisää raportti Markdownina, esim. `h0-oikeasti-netissa.md`
-3. GitHubissa: **Settings → Pages → Deploy from a branch → main**
-4. Sait osoitteen muotoa `https://käyttäjä.github.io/repo/`
-5. Palauta tämä linkki Läksuun ja ristiinarvioi vähintään 2 raporttia
