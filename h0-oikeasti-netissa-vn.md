@@ -171,4 +171,4 @@ Nimenä oli .space-päätteinen harjoitusdomain (halvin kategoria, mielellään 
 
 ### Maininta tekoälyn käytöstä
 
-Markdown-tiedostojen luomisessa ja editoinnissa käytin apuna Mistral AI:n Vibe-tekoälyä (https://mistral.ai). Kaikki tekemiset, komennot ja valinnat raportissa ovat omia, ja kuvakaappaukset otti itse; tekoäly toimi dokumentoinnin apuvälineenä.
+Markdown-tiedostojen luomisessa ja editoinnissa käytin apuna Mistral AI:n Vibe-tekoälyä (https://mistral.ai). Kaikki tekemiset, komennot ja valinnat raportissa ovat omia, ja kuvakaappaukset otin itse; tekoäly toimi dokumentoinnin apuvälineenä.
