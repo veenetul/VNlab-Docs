@@ -26,7 +26,7 @@ Harjoituksen tein läppärillä, jossa on AMD Ryzen 5 4500U -suoritin ja 32 Gt R
 - Halvimman tarjoajan haku: Namecheap, domain *aleksipartanen.space* 0,83 €/vuosi + ilmainen domain privacy; hylättiin tarjolla olleet lisäpalvelut
 - DNS:n määritys Namecheapin Domain List → Advanced DNS -näkymässä: turha CNAME poistetaan, lisätään A-tietue (`@` = paljas domain, `www` = www-alidomain), TTL 5 min jotta muutokset näkyvät nopeasti
 - Alidomainit (`yksi.`, `kaksi.`) omilla A-tietueillaan; DNS-tietojen tutkiminen `dig`-komennolla (`dig @8.8.8.8 domain -t ANY`, tietuetyypit AAAA, A, TXT, NS, CAA, SOA)
-- **Oma huomio:** Namecheap on minulle entuudestaan tuttu. Yleensä ohitan Namecheapin sisäisen DNS-editorin ja vaihdan domainin nimipalvelimet Cloudflaren ilmaisversioon, joka on oman kokemukseni pohjalta sulavampi käyttää. Harjoituksessa kannattaa mainita kumpaa reittiä itse käyttää.
+- **Oma huomio:** Namecheap on minulle entuudestaan tuttu. Yleensä ohitan Namecheapin sisäisen DNS-editorin ja vaihdan domainin nimipalvelimet Cloudflaren ilmaisversioon, joka on oman kokemukseni pohjalta sulavampi käyttää. Harjoituksessa kannattaa kuitenkin mainita mihin itse päätyy.
 
 ## a) Paikallinen: Debian 13 virtuaalikoneeseen
 
@@ -62,7 +62,7 @@ Levyä (Hyper-V:n 136 GB virtuaalilevy) en päättänyt pilkkoa mitenkään fiks
 
 ![Ohjattu partitiointi, koko levy](img/step6_.png)
 
-Ja osiointikin meni kaikkein yksinkertaisimmallaan eli kaikki yhteen osioon. Harjoituskoneelle riittää. Jos joskus tarvitsisi erillistä /homea tai palvelinrooleja, voisi harkita tarkemmin, mutta nyt tämä oli selkein ja nopein reitti:
+Ja osiointikin meni kaikkein yksinkertaisimmallaan eli kaikki yhteen osioon. Joka on näin laboratoriokäytössä jarkevää itse ehkä jakaisin /home erilleen jos kone olisi jokapäiväkaytössä. Jos joskus tarvitsisi erillistä /homea tai palvelinrooleja, voisi harkita tarkemmin, mutta nyt tämä oli selkein ja nopein reitti:
 
 ![Kaikki tiedostot yhteen osioon, Msft Virtual Disk 136.4 GB](img/step7.png)
 
@@ -84,13 +84,13 @@ Eli jos yksi juttu tästä asennuksesta jää mieleen, niin se on tämä: **asen
 
 ## b) VPS
 
-Palvelinvuokraajaksi valitsin UpCloudin: suomalainen toimija, halpa peruslinja ja läpinäkyvä hinnoittelu, eli ihan tehtävänanninkin suosittelemaa kategoriaa. Isot pilvialustat (AWS, Azure, GCP) jätin tähän tarkoituksella rouhimatta, koska harjoitusta varten en halunnut opetella konsoleita vaan saada palvelin pystyyn.
+Palvelinvuokraajaksi valitsin UpCloudin: suomalainen toimija, halpa peruslinja ja läpinäkyvä hinnoittelu, eli ihan tehtävänannonkin suosittelema. Isot pilvialustat (AWS, Azure, GCP) jätin tähän tarkoituksella rouhimatta, koska harjoitusta varten en halunnut opetella konsoleita vaan saada palvelin pystyyn.
 
-Koneen luonti oli yllättävän kivutonta. Valitsin sijainniksi FI-HEL2:n (Helsinki), jolloin viive jää pieneksi ja tieto pysyy EU:n sisällä. Käyttöjärjestelmäksi Debian GNU/Linux 13 (Trixie), sama versio kuin paikallisessa virtuaalikoneessa, jotta molemmat ympäristöt toimivat samalla tavalla. Kookin pienin tarjolla oleva: 1 CPU, 1 GB RAM, 10 GB levyä, hinnaksi 3 €/kk. Julkinen IPv4 ja IPv6 päälle, ja kasassa oli ihan riittävä peliväline tälle harjoitukselle:
+Koneen luonti oli yllättävän kivutonta. Valitsin sijainniksi FI-HEL2:n (Helsinki), jolloin viive jää pieneksi ja tieto pysyy EU:n sisällä. Käyttöjärjestelmäksi Debian GNU/Linux 13 (Trixie), sama versio kuin paikallisessa virtuaalikoneessa, jotta molemmat ympäristöt toimivat samalla tavalla. Provisioksi otin pienimmän tarjolla olevan: 1 CPU, 1 GB RAM, 10 GB levyä, hinnaksi 3 €/kk. Julkinen IPv4 ja IPv6 päälle, ja kasassa oli ihan riittävä peliväline tälle harjoitukselle:
 
 ![UpCloud: käyttöjärjestelmä, verkkoasetukset ja yhteenveto palvelimesta](img/vps1.png)
 
-Kirjautumistavaksi valitsin SSH-avaimen, koska salasanalla kirjautumiseen en edes halunnut mahdollisuutta. Avaimen olin luonut valmiiksi paikallisella koneella (`ssh-keygen`, oletuspolkuun `~/.ssh/id_ed25519`) ja lisännyt julkisen osan UpCloudin SSH-avainasetuksiin. Isäntänimen annoin kuvamaista `debian-1cpu-1gb-fi-hel2`, jotta koko configuraatio on luettavissa nimestä. Deploy-nappia painettua palvelin oli pystyssä noin minuutissa:
+Kirjautumistavaksi valitsin SSH-avaimen, koska salasanalla kirjautumiseen en edes halunnut mahdollisuutta. Avaimen olin luonut valmiiksi paikallisella koneella (`ssh-keygen`, oletuspolkuun `~/.ssh/id_ed25519`) ja lisännyt julkisen osan UpCloudin SSH-avainasetuksiin. Isäntänimen annoin olevan sinällään `debian-1cpu-1gb-fi-hel2`, jotta koko configuraatio on luettavissa nimestä. Deploy-nappia painettua palvelin oli pystyssä noin minuutissa:
 
 ![UpCloud: SSH-avain, isäntänimi ja Deploy](img/vps2.png)
 
@@ -157,7 +157,7 @@ Oletussivun tilalle vaihdoin ihan oman minimaalisen HTML-sivun: tarpeeksi erottu
 
 ## e) Vapaaehtoinen: Domain-nimi
 
-Nimenä oli .space-päätteinen harjoitusdomain (halvin kategoria, mielellään sellainen jota ei kannata uusia). Namecheapin Advanced DNS -näkymässä poistin ensin oletuksena olleet parkkeeraustietueet, koska Namecheap luo jokaiselle uudelle domainille oletuksena A-tietueet parkkeerauspalvelimelleen (192.64.x.x). Tilalle lisäsin omat A-tietueet: `@` (paljas domain) ja `www`, molemmat osoittamaan palvelimen IPv4-osoitteeseen. TTL:n jätin Automatic-vaihtoehtoon, kun muutokset eivät juuri tällä kertaa vaatineet minuuttia tarkempaa ajoitusta:
+Nimenä oli .space-päätteinen harjoitusdomain (halvin kategoria, mielellään sellainen jota ei kannata uusia). Namecheapin Advanced DNS -näkymässä poistin ensin oletuksena olleet parkkeerrecordit, koska Namecheap luo jokaiselle uudelle domainille oletuksena Recordit parkkeerauspalvelimelleen (192.64.x.x). Tilalle lisäsin omat Recordit: `@` (paljas domain) ja `www`, molemmat osoittamaan palvelimen IPv4-osoitteeseen. TTL:n jätin Automatic-vaihtoehtoon, kun muutokset eivät juuri tällä kertaa vaatineet minuuttia tarkempaa ajoitusta:
 
 ![Namecheap Advanced DNS: A-tietueet @ ja www osoittamaan palvelinta](img/dns1.png)
 
