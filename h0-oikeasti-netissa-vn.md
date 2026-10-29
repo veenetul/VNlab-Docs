@@ -1,3 +1,5 @@
+
+
 # h0 Oikeasti netissä
 
 **Palvelinten hallinta – ICI001AS3A-3015**
@@ -160,6 +162,8 @@ Oletussivun tilalle vaihdoin ihan oman minimaalisen HTML-sivun: tarpeeksi erottu
 Nimenä oli .space-päätteinen harjoitusdomain (halvin kategoria, mielellään sellainen jota ei kannata uusia). Namecheapin Advanced DNS -näkymässä poistin ensin oletuksena olleet parkkeerrecordit, koska Namecheap luo jokaiselle uudelle domainille oletuksena Recordit parkkeerauspalvelimelleen (192.64.x.x). Tilalle lisäsin omat Recordit: `@` (paljas domain) ja `www`, molemmat osoittamaan palvelimen IPv4-osoitteeseen. TTL:n jätin Automatic-vaihtoehtoon, kun muutokset eivät juuri tällä kertaa vaatineet minuuttia tarkempaa ajoitusta:
 
 ![Namecheap Advanced DNS: A-tietueet @ ja www osoittamaan palvelinta](img/dns1.png)
+
+Domain ja nettisivu löytyy väliaikaisesti [VNlab.space](https://vnlab.space)
 
 ## Lähteet
 
