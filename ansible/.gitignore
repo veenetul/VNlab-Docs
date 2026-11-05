@@ -1,0 +1,14 @@
+# Ansible junk
+*.retry
+*.log
+.ansible/
+
+# Secrets
+vault-pass.txt
+*.vault
+id_ed25519
+id_rsa
+
+# Editor noise
+*.swp
+.vscode/
