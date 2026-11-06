@@ -1,0 +1,11 @@
+# Ansible
+*.retry            # leftover files from failed playbook runs
+*.log
+vault-password     # if you ever use ansible-vault secrets
+.hosts_test
+
+# Editors & OS noise
+*.swp
+*~
+.DS_Store
+Thumbs.db
