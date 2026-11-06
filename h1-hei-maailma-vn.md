@@ -186,8 +186,8 @@ cat /tmp/toimiiko/heimaailma
 Ensimmäisellä yrityksellä sain virheitä, jotka ratkaisin yksi kerrallaan:
 
 1. **"no hosts matched"** - ajoin playbookin `-i hosts` -lipulla, mutta inventaariotiedostoni nimi on `inventory`. Korjaus: `ansible-playbook site.yml -i inventory` (tai ansible.cfg, jolloin lippua ei tarvita).
-2. **YAML-virhe** - tehtävissä oli kaksoispiste, jonka jälkeen ei tullut välilyöntiä. YAML vaatii `avain: arvo` -muodon, korjasin sisennyksen ja välilyönnit.
-3. **Python-tulkki-varoitus** - [WARNING] Python-tulkista (/usr/bin/python3.13). Tämä on vain varoitus, ei virhe; ajot menivät läpi. Kiinnitin tulkin `ansible.cfg`-tiedostoon (`interpreter_python = /usr/bin/python3.13`), jolloin varoitus poistui ja tulkki ei vaihdu järjestelmäpäivityksessä.
+2. **YAML-virhe** - playbookissa oli indentaatio virhe joka esiintyi niin että se ei halunnut ajaa ja valitti attribuutin olevan väärä se oli vain liian korkealla indentaatiossa eli ongelman sai helposti ratkaistua vain sillä että nanossa lisäsi tabulaattorilla indentaation rivin alkuun. SIllä YAML on erittäin tarkka indentaatioista.
+3. **Python-interpreter-varoitus** - [WARNING] Python-interpreteristä (/usr/bin/python3.13). Tämä on vain varoitus, ei virhe; ajot menivät läpi. Kiinnitin tulkin `ansible.cfg`-tiedostoon (`interpreter_python = /usr/bin/python3.13`), jolloin varoitus poistui ja tulkki ei vaihdu järjestelmäpäivityksessä.
 
 ![Virhetilanne: no hosts matched ja YAML-virhe](img/indentaatiovika.png)
 
