@@ -1,2 +1,2 @@
 [orjat]
-192.168.100.50 ansible_user=ladmin
+172.27.103.9 ansible_connection=ssh ansible_user=ansiblesu

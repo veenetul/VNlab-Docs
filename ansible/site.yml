@@ -1,0 +1,40 @@
+---
+- name: h2
+  hosts: orjat
+  remote_user: ansiblesu
+  become: true
+  tasks:
+  - name: ssh tunnus
+    user:
+      name: ansitmp
+      shell: /bin/bash
+      groups: sudo
+      create_home: true
+      comment: "Ansiblen luoma tunnus"
+
+  - name: pubkey ansitmp
+    authorized_key:
+      user: ansitmp
+      key: "{{ lookup('file','/home/ladmin/.ssh/id_ed25519.pub') }}"
+
+  - name: pakettiasennus
+    apt:
+      name: [cowsay, tree]
+      state: present
+      update_cache: true
+
+  - name: monirivi filu ja omistaja seka oikeudet
+    copy:
+      content: |
+        Kirjoitettu ansiblella
+        Rivivaihto
+      dest: /home/ansitmp/voileipa.txt
+      owner: ansitmp
+      group: ansitmp
+      mode: "0600"
+
+  - name: sivulataus
+    get_url:
+      url: https://terokarvinen.com
+      dest: /tmp/tero.html
+      mode: "0644"

@@ -1,0 +1,19 @@
+---
+- name: h1 hei maailma
+  hosts: orjat
+  tasks:
+    - name: testaa yhteys
+      ping:
+    - name: luo kansio /tmp/toimiiko
+      file:
+        path: /tmp/toimiiko
+        state: directory
+        mode: "0755"
+    - name: tiedostonkirjoitus
+      copy:
+        content: "testi\n"
+        dest: /tmp/toimiiko/heimaailma
+        mode: "0644"
+    - name: hei maailma
+      debug:
+        msg: "Hei maailma!"
