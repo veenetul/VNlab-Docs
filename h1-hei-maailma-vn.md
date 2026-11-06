@@ -207,3 +207,8 @@ Ensimmäinen Ansible-playbook toimii ja on idempotentti. Muutokset työnnetty Gi
 ```bash
 git add --all && git commit -m "h1" && git pull && git push
 ```
+
+## Lähteet
+
+- Karvinen 2026: [SSH public key - Login without password](https://terokarvinen.com/ssh-public-key-login-without-password/) - x) tiivistelmään
+- Karvinen 2026: [Hello Ansible](https://terokarvinen.com/hello-ansible/) - x) tiivistelmään
