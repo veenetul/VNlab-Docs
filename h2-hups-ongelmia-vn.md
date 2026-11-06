@@ -43,7 +43,7 @@
 - `ansible-doc file`: `path`, `recurse`, `src`, `state`; `owner`, `group`, `mode`
 - `ansible-doc user`: `name`; `create_home`, `comment`, `groups`, `shell`, `state`, `system`
 - `ansible-doc authorized_key`: `user`, `key`
-- **Oma huomio:** `ansible-doc` riittää usein koko dokumentaatioksi ilman nettiselailua; h2-playbookin optiot (content/owner/mode ym.) tarkistin juuri näin
+- **Oma huomio:** `ansible-doc` riittää hyvin dokumentaatioksi ilman suurempaa nettiselausta; h2-playbookin optiot (content/owner/mode ym.)
 
 ## Ympäristö
 
@@ -231,14 +231,6 @@ git add --all && git commit -m "h1 & h2: reports, screenshots, playbooks" && git
 
 Projektin rakenne repositoriossa: `ansible/site.yml` on h2-playbook (sama kuin `h2.yml`), `ansible/h1.yml` on h1-tehtävän playbook, ja `roles/`- ja `group_vars/`-kansiot ovat valmiina tulevia tehtäviä varten. Playbook ajetaan inventaarion käyttäjällä: `ansible-playbook site.yml` (asetukset tulevat `ansible.cfg`:stä).
 
-<!-- TODO-kokoelma ennen julkaisua:
-1. x) tiivistelmät viikkoluennon lähteistä
-2. Drift-kuvakaappaus (pakettiasennus changed + cowsay moo)
-3. cat voileipa.txt -kuva
-4. Siisti ansitmp-kirjautumiskuva ilman salasanakyselyä
-5. `ansible-playbook --version` -tuloste ympäristöosioon
-6. Tarkista kieliasu ja poista kaikki HTML-kommentit
--->
 ## Lähteet
 
 - Karvinen 2025: [Configuration Management 2025 autumn](https://terokarvinen.com/configuration-management/) - tehtävänanto
