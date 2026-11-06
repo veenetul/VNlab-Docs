@@ -2,14 +2,19 @@
 
 *Ville Nietula, Haaga-Helian tunnus configurations management - kurssin kotitehtävä h1. Työ tehty 6.11.2026.*
 
-## Lähteet
-
-- Karvinen 2025: [Configuration Management 2025 autumn](https://terokarvinen.com/configuration-management/) - tehtävänanto
-- Karvinen 2006: [Hello World!](https://terokarvinen.com/2006/hello-world/) - raportointikielestä
-
 ## Tiivistelmä (x)
 
-<!-- Kirjoita 3-5 ranskalaista viivaa per artikkeli, jokainen lähde otsikoituna (sama muoto kuin h0-raportissa) -->
+### Karvinen 2026: SSH public key - Login without password
+
+- Käy läpi ssh-paketin käytön: kirjautumisen ssh:llä, avainparin luonnin (`ssh-keygen`) ja julkisen avaimen siirtämisen palvelimelle (`ssh-copy-id`), minkä jälkeen kirjautuminen onnistuu ilman salasanaa
+- Keskeinen periaate: julkinen avain menee orjan `~/.ssh/authorized_keys`-tiedostoon, yksityinen avain pysyy koneella
+- **Oma huomio:** sama ketju (keygen → copy-id → salasanoton kirjautuminen) toimi tässä tehtävässä sellaisenaan, ja samaa avainparia voi hyödyntää myös GitHubissa
+
+### Karvinen 2026: Hello Ansible
+
+- Käy Ansiblen käytön läpi selkeästi: asennuksen, inventaarion, playbooken ajon ja yksinkertaisten tehtävien automatisoinnin
+- Purkaa myös Ansiblen kansiorakenteen ja roolit, eli miten isompi projekti kannattaa järjestää
+- **Oma huomio:** artikkelia voi käyttää tehtävän pohjana; roolien ja kansiorakenteen kuvaus oli hyötyä, kun järjestin oman projektini rakenteen
 
 ## a) Virtuaalikone ja alkutoimet
 
@@ -25,9 +30,9 @@ sudo systemctl enable --now ssh
 
 Ssh-palvelin lähtee käyntiin automaattisesti bootissa (`enabled`) ja oli `active (running)`.
 
-![apt-get update/upgrade ja openssh-server + ansiblen asennus](img/h1a-asennus.png)
+![apt-get update/upgrade ja openssh-server + ansiblen asennus](img/pkg-install.png)
 
-![systemctl status ssh: active (running)](img/h1a-ssh-active.png)
+![systemctl status ssh: active (running)](img/sshcheck.png)
 
 ## Versionhallinta
 
@@ -181,8 +186,8 @@ cat /tmp/toimiiko/heimaailma
 Ensimmäisellä yrityksellä sain virheitä, jotka ratkaisin yksi kerrallaan:
 
 1. **"no hosts matched"** - ajoin playbookin `-i hosts` -lipulla, mutta inventaariotiedostoni nimi on `inventory`. Korjaus: `ansible-playbook site.yml -i inventory` (tai ansible.cfg, jolloin lippua ei tarvita).
-2. **YAML-virhe** - tehtävissä oli kaksoispiste, jonka jälkeen ei tullut välilyöntiä. YAML vaatii `avain: arvo` -muodon, korjasin sisennyksen ja välilyönnit.
-3. **Python-tulkki-varoitus** - [WARNING] Python-tulkista (/usr/bin/python3.13). Tämä on vain varoitus, ei virhe; ajot menivät läpi. Kiinnitin tulkin `ansible.cfg`-tiedostoon (`interpreter_python = /usr/bin/python3.13`), jolloin varoitus poistui ja tulkki ei vaihdu järjestelmäpäivityksessä.
+2. **YAML-virhe** - playbookissa oli indentaatio virhe joka esiintyi niin että se ei halunnut ajaa ja valitti attribuutin olevan väärä se oli vain liian korkealla indentaatiossa eli ongelman sai helposti ratkaistua vain sillä että nanossa lisäsi tabulaattorilla indentaation rivin alkuun. SIllä YAML on erittäin tarkka indentaatioista.
+3. **Python-interpreter-varoitus** - [WARNING] Python-interpreteristä (/usr/bin/python3.13). Tämä on vain varoitus, ei virhe; ajot menivät läpi. Kiinnitin tulkin `ansible.cfg`-tiedostoon (`interpreter_python = /usr/bin/python3.13`), jolloin varoitus poistui ja tulkki ei vaihdu järjestelmäpäivityksessä.
 
 ![Virhetilanne: no hosts matched ja YAML-virhe](img/indentaatiovika.png)
 
@@ -195,5 +200,16 @@ Markdown-tiedostojen luomisessa ja editoinnissa käytin apuna Mistral AI:n Vibe-
 Ensimmäinen Ansible-playbook toimii ja on idempotentti. Muutokset työnnetty GitHubiin:
 
 ```bash
-git add --all && git commit -m "h1" && git pull && git push
+git add --all && git commit -m "h1 & h2: reports, screenshots, playbooks" && git pull && git push
 ```
+
+![git add, commit ja push](img/commit-2.png)
+
+Repositoriossa tehtävän playbook on tiedostossa `ansible/h1.yml` (h2-tehtävän playbook on `site.yml`/`h2.yml`), joten molemmat ovat suoraan ajettavissa ja todennettavissa.
+
+## Lähteet
+
+- Karvinen 2025: [Configuration Management 2025 autumn](https://terokarvinen.com/configuration-management/) - tehtävänanto
+- Karvinen 2026: [SSH public key - Login without password](https://terokarvinen.com/ssh-public-key-login-without-password/) - x) tiivistelmään
+- Karvinen 2026: [Hello Ansible](https://terokarvinen.com/hello-ansible/) - x) tiivistelmään
+- Karvinen 2006: [Hello World!](https://terokarvinen.com/2006/hello-world/) - raportointikielestä
