@@ -9,7 +9,17 @@
 
 ## Tiivistelmä (x)
 
-<!-- Kirjoita 3-5 ranskalaista viivaa per artikkeli, jokainen lähde otsikoituna (sama muoto kuin h0-raportissa) -->
+### Karvinen 2026: SSH public key - Login without password
+
+- Käy läpi ssh-paketin käytön: kirjautumisen ssh:llä, avainparin luonnin (`ssh-keygen`) ja julkisen avaimen siirtämisen palvelimelle (`ssh-copy-id`), minkä jälkeen kirjautuminen onnistuu ilman salasanaa
+- Keskeinen periaate: julkinen avain menee orjan `~/.ssh/authorized_keys`-tiedostoon, yksityinen avain pysyy koneella
+- **Oma huomio:** sama ketju (keygen → copy-id → salasanaton kirjautuminen) toimi tässä tehtävässä sellaisenaan, ja samaa avainparia voi hyödyntää myös GitHubissa
+
+### Karvinen 2026: Hello Ansible
+
+- Käy Ansiblen käytön läpi selkeästi: asennuksen, inventaarion, playbooken ajon ja yksinkertaisten tehtävien automatisoinnin
+- Purkaa myös Ansiblen kansiorakenteen ja roolit, eli miten isompi projekti kannattaa järjestää
+- **Oma huomio:** artikkelia voi käyttää tehtävän pohjana; roolien ja kansiorakenteen kuvauksesta oli hyötyä, kun järjestin oman projektini rakenteen
 
 ## a) Virtuaalikone ja alkutoimet
 
