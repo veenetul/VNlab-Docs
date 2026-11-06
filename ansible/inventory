@@ -1,2 +1,2 @@
 [orjat]
-172.27.103.9 ansible_connection=ssh ansible_user=ansiblesu
+192.168.77.10 ansible_connection=ssh ansible_user=ansiblesu
