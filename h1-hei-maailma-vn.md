@@ -25,8 +25,7 @@ sudo systemctl enable --now ssh
 
 Ssh-palvelin lähtee käyntiin automaattisesti bootissa (`enabled`) ja oli `active (running)`.
 
-**Kuvakaappaus:** `Screenshot 2026-11-06 120029.png` (apt-get update/upgrade + openssh-server ja ansiblen asennus, ip 172.27.103.9)
-**Kuvakaappaus:** `Screenshot 2026-11-06 120318.png` (systemctl status ssh: active (running), enable --now ssh)
+apt-get update/upgrade ja openssh-server + ansiblen asennussystemctl status ssh: active (running)
 
 ## Versionhallinta
 
@@ -34,7 +33,6 @@ Asensin gitin ja tein globaalit käyttäjäasetukset:
 
 ```bash
 sudo apt install git -y
-
 
 git config --global user.name "veenetul"
 git config --global user.email "ville.nietula@example.com"
@@ -44,17 +42,9 @@ Globaalit asetukset tallentuvat `~/.gitconfig`-tiedostoon, joten ne pätevät ka
 
 Lisäsin julkisen avaimen GitHubin asetuksiin (SSH keys), joten kloonaus onnistuu ilman salasanaa.
 
-**Kuvakaappaus:** `gitkeys.png` (GitHubin SSH-avaimet)
+GitHubin SSH-avaimet
 
-Ssh-palvelimen tila varmistettiin systemctlillä:
-
-```bash
-sudo systemctl enable --now ssh
-systemctl status ssh
-# → active (running), enabled
-```
-
-**Kuvakaappaus:** `Screenshot 2026-11-06 120318.png` (systemctl status ssh: active (running))
+Ssh-palvelimen tila varmistettiin systemctlillä (kuva kohdassa a): `active (running)`, `enabled`.
 
 Koska olin tehnyt kurssin aikana GitHubiin oman repositorion, jossa oli valmiiksi Ansible-kansiorakenne, konfiguraatio (`ansible.cfg`) ja inventaariotiedosto, sain ne kaikki kloonaamalla:
 
@@ -83,17 +73,14 @@ ssh ladmin@172.27.103.9        # ei salasanakyselyä
 
 Julkinen avain on lisätty myös GitHubiin, joten kloonaus ilman salasanaa onnistuu.
 
-**Kuvakaappaus:** `sshcon.png` (ssh-yhteys PowerShellistä: ladmin@orja, Debian 13)
-**Kuvakaappaus:** `keypaircat.png` (ssh-keygen: ed25519-avainpari luotu)
-**Kuvakaappaus:** `sshcopyid.png` (ssh-copy-id: "Number of key(s) added: 1")
-**Kuvakaappaus:** `gitkeys.png` (GitHubin SSH-avaimet: id_ed25519 lisätty 5.11.2026)
+ssh-yhteys PowerShellistä: ladmin@orjassh-keygen: ed25519-avainparissh-copy-id: "Number of key(s) added: 1"
 
 ## c) Ansible ja inventaario
 
-Asensin ansible ohjeen mukaan (juuri + flagit) ja loin projektikansioon inventaarion ja asetustiedoston:
+Loin projektikansioon inventaarion ja asetustiedoston:
 
 ```bash
-mkdir -p ~/VNlab-Docs/ansible && cd ~/VNlab-Docs/ansible
+cd ~/VNlab-Docs/ansible
 nano ansible.cfg    # inventory = ./inventory
 nano inventory
 ```
@@ -110,8 +97,6 @@ Testi:
 ```bash
 ansible localhost -m ping
 # localhost | SUCCESS => { "ping": "pong" }
-ansible orjat -i inventory -m ping
-# 172.27.103.9 | SUCCESS => { "ping": "pong" }
 ```
 
 Asetustiedosto `ansible.cfg` - kiinnitin myös Python-tulkinnan, jolloin tulkkivaroitus poistuu eikä tulkki vaihdu järjestelmäpäivityksessä:
@@ -122,9 +107,7 @@ inventory = ./inventory
 interpreter_python = /usr/bin/python3.13
 ```
 
-**Kuvakaappaus:** `inv.png` (inventory nano-editorissa, siisti)
-**Kuvakaappaus:** `ansiblelocalhost.png` (ansible localhost -m ping → pong)
-**Kuvakaappaus:** `pythonfix.png` (ansible.cfg: inventory + interpreter_python)
+inventory nano-editorissaansible localhost -m ping → pongansible.cfg: inventory + interpreter\_python
 
 ## d) Hei maailma! -playbook
 
@@ -173,11 +156,7 @@ cat /tmp/toimiiko/heimaailma
 # → testi
 ```
 
-**Kuvakaappaus (playbook):** `h1.png` (site.yml nanossa)
-**Kuvakaappaus (ensimmäinen ajo):** `h1success.png` (ok=5 changed=2, Python-tulkki-varoitus näkyy)
-**Kuvakaappaus (toinen ajo):** `h1run2.png` (ok=5 changed=0 - idempotenssi)
-**Kuvakaappaus (sisältö):** `h1verif2.png` (heimaailma-tiedosto, sisältö "testi")
-**Kuvakaappaus (varmistus):** `tempverif.png` (/tmp/toimiiko olemassa, heimaailma listattuna)
+site.yml nano-editorissaEnsimmäinen ajo: ok=5 changed=2, Python-tulkki-varoitus näkyyToinen ajo: ok=5 changed=0 - idempotenssiheimaailma-tiedoston sisältö "testi"/tmp/toimiiko olemassa, heimaailma listattuna
 
 ## Vianetsintä
 
@@ -185,9 +164,9 @@ Ensimmäisellä yrityksellä sain virheitä, jotka ratkaisin yksi kerrallaan:
 
 1. **"no hosts matched"** - ajoin playbookin `-i hosts` -lipulla, mutta inventaariotiedostoni nimi on `inventory`. Korjaus: `ansible-playbook site.yml -i inventory` (tai ansible.cfg, jolloin lippua ei tarvita).
 2. **YAML-virhe** - tehtävissä oli kaksoispiste, jonka jälkeen ei tullut välilyöntiä. YAML vaatii `avain: arvo` -muodon, korjasin sisennyksen ja välilyönnit.
-3. **Python-tulkki-varoitus** - [WARNING] Python-tulkista (/usr/bin/python3.13). Tämä on vain varoitus, ei virhe; ajot menivät läpi. Kiinnitin tulkin `ansible.cfg`-tiedostoon (`interpreter_python = /usr/bin/python3.13`), jolloin varoitus poistui ja tulkki ei vaihdu järjestelmäpäivityksessä. Todiste: kuvakaappaus 130312.
+3. **Python-tulkki-varoitus** - \[WARNING\] Python-tulkista (/usr/bin/python3.13). Tämä on vain varoitus, ei virhe; ajot menivät läpi. Kiinnitin tulkin `ansible.cfg`-tiedostoon (`interpreter_python = /usr/bin/python3.13`), jolloin varoitus poistui ja tulkki ei vaihdu järjestelmäpäivityksessä.
 
-**Kuvakaappaus:** `indentaatiovika.png` (virhetilanne: "no hosts matched", YAML-virhe)
+Virhetilanne: no hosts matched ja YAML-virhe
 
 ## Maininta tekoälyn käytöstä
 
